@@ -42,7 +42,7 @@ class Game:
         ##Set up all rooms and objects
         self.create_rooms()
         ##Initial position
-        self.my_player.current_room = self.first_room
+        self.my_player.current_room = self.storage
         ##Text to UI object
         self.textUI = TextUI()
 
@@ -477,10 +477,10 @@ class Game:
                 self.textUI.operation_game_info()
                 start_game, word2 = self.textUI.get_command()
                 if start_game == 'start':
-                    if self.my_player.backpack.process_operation_game(self.game_rooms):
-                        self.textUI.print_lines()
-                        ##Remove the operation_game from the backpack
-                        self.my_player.backpack.remove_item(second_word)
+                    self.my_player.backpack.process_operation_game(self.game_rooms)
+                    self.textUI.print_lines()
+                    ##Remove the operation_game from the backpack
+                    self.my_player.backpack.remove_item(second_word)
                 else:
                     self.textUI.print_to_textUI("Remember to solve the operation_game to open the dining_room door")
                     self.textUI.print_lines()

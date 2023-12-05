@@ -112,11 +112,9 @@ class Backpack:
 
             elif user_answer == "back":
                 quit_operation_game = False
-                return False
 
             else:
                 print("Wrong answer. Try again.")
-                return False
 
         print("Final score: ", cnt)
 
