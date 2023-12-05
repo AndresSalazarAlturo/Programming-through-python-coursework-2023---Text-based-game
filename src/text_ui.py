@@ -115,6 +115,9 @@ class TextUI:
         How to play:
         Type 'start' to play the game.
         Type 'back' to quit the game.
+
+        Tip: If you fail the operations and want to try again. Use the command 'use' + 'operation_game'.
+
         Answer correctly all the operations within the time limit and get the item. If fail, try again
         you have unlimited opportunities. Hope you scape ASAP!
                             """)
@@ -170,13 +173,18 @@ class TextUI:
         """
         self.print_to_textUI(f'Your command words are: {self.show_command_words()}.')
         self.print_to_textUI("""
-        1. To move through the map use the command 'go' + 'direction you want to go'
-        2. The 'current room' commmand give your current position
-        3. The 'explore' command shows the items that you can pick in that room
-        4. To pick an item in the room use command 'pick' + 'item you want to pick'
-        5. To use an item, type command 'use' + 'item you want to use'
-        6. To remove an item from backpack, type command 'remove' + 'item you want to remove'
-        7. Use 'quit' command to finish the game
+        
+        #############################################
+        #####Game commands - read them carefully#####
+        #############################################
+
+        1. To move through the map use the command 'go' + 'direction you want to go'.
+        2. The 'current room' commmand give your current position.
+        3. The 'explore' command shows the items that you can pick in that room, use it in all rooms, it reveal important information.
+        4. To pick an item in the room use command 'pick' + 'item you want to pick'.
+        5. To use an item, type command 'use' + 'item you want to use'.
+        6. To remove an item from backpack, type command 'remove' + 'item you want to remove'. Remeber to remove not essential as documents.
+        7. Use 'quit' command to finish the game.
                     """)
 
         # ['help', 'go', 'current room', 'explore', 'pick', 'items', 'use', 'remove','quit']
