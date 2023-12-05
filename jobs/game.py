@@ -4,8 +4,6 @@ This class is the main class of the "Adventure World" application.
 around some scenery. That's all. It should really be extended to make it more
 interesting!
 
-To play this game, create an instance of this class and call the "play" method.
-
 This main class creates and initialises all the others: it creates all rooms,
 creates the parser and starts the game. It also evaluates and executes the
 commands that the parser returns.
@@ -13,6 +11,12 @@ commands that the parser returns.
 This game is adapted from the 'World of Zuul' by Michael Kolling and 
 David J. Barnes. The original was written in Java and has been simplified and
 converted to Python by Kingsley Sage.
+
+The extention of the game was made by:
+Andres Sebastian Salazar Alturo
+Candidate number: 276209
+
+As part of course work for Programming through python 2023 :D
 """
 
 #Set the path to other directories

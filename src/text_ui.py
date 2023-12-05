@@ -146,6 +146,7 @@ class TextUI:
         Thank you for playing!!
         
         Developed by Andres Sebastian Salazar Alturo :D
+        Candidate number: 276209
                             """)
 
 
