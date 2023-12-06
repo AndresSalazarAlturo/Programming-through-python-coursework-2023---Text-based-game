@@ -28,7 +28,7 @@ class Room:
             entry of the (key, value) pair (direction, room).
         :param direction: The direction leading out of this room
         :param neighbour: The room that this direction takes you to
-        :return: None
+        :return: True
         """
         self.exits[direction] = neighbour
         return True

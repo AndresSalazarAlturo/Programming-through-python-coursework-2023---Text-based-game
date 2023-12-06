@@ -1,18 +1,18 @@
 """
-This class is the main class of the "Adventure World" application.
-'Adventure World' is a very simple, text based adventure game. Users can walk
-around some scenery. That's all. It should really be extended to make it more
-interesting!
+This class is the main class of the "Trapped" application.
+"Trapped" is a scape room, text based adventure game. Users can walk
+around some scenery, pick items, use items and work out how to escape!
+
 
 This main class creates and initialises all the others: it creates all rooms,
-creates the parser and starts the game. It also evaluates and executes the
+items and creates the parser and starts the game. It also evaluates and executes the
 commands that the parser returns.
 
 This game is adapted from the 'World of Zuul' by Michael Kolling and 
 David J. Barnes. The original was written in Java and has been simplified and
 converted to Python by Kingsley Sage.
 
-The extention of the game was made by:
+The extention of the game developed by:
 Andres Sebastian Salazar Alturo
 Candidate number: 276209
 
@@ -139,7 +139,7 @@ class Game:
         self.kitchen.set_exit("north", self.stairs)
         self.kitchen.set_exit("south", self.corridor2)
 
-        ##stairs posibilities - Change this options
+        ##stairs posibilities
         self.stairs.set_exit("north", self.basement)
         self.stairs.set_exit("south", self.kitchen)
 
@@ -181,6 +181,9 @@ class Game:
         self.puzzle = Item("puzzle", "Guess the number puzzle")
         self.document1 = Item("document1", """
 
+        A lab with some computers, no computer is working, all are modern but with lots of dust and broken
+        someone with no patience may tried to make them work.
+
         To use the pocket, pick it up and use the command 'use' + 'pocket' and increse your backpack capacity. 
         You should pick the pocket and use it before pick another items, your backpack capacity is just 3!.
         
@@ -195,6 +198,8 @@ class Game:
         ##Create items for office
         self.button = Item("button", "Keep it press to access the kitchen")
         self.document3 = Item("document3", """
+
+        Office room - silence, all broken, dirty and lots of desks cluttered in the middle.
 
         The laboratory password is 4321. To use the statue and press the button 
         use the command 'use' + 'statue'
@@ -371,7 +376,7 @@ class Game:
             Gets the user input and depending on the first word selects the command and does what user 
             specifies with the second word.
         :param command: a 2-tuple of the form (command_word, second_word)
-        :return: True if the game has been quit, False otherwise
+        :return: True if player typed quit.
         """
         command_word, second_word = command
         if command_word != None:
@@ -429,7 +434,8 @@ class Game:
     
     def do_use_command(self, second_word):
         """
-            Performs the USE command.
+            Process when the player wants to use an item. The player can just use some items, like 
+            the games, the stone, and the statue to press the button.
             :param second_word: Players second word, must be a item that can be use. If can't be use
             or not in the bag pack ask for a command again.
             :return: None
@@ -559,7 +565,9 @@ class Game:
 
     def do_remove_command(self, second_word):
         """
-            Performs the REMOVE command.
+            Removes the item from the player's backpack and adds the item to 
+            the current room, like dropping the item, the player can pick the 
+            item again if the backpack is not full.
         :param second_word: the item the player wants to remove from backpack
         :return: None
         """
@@ -582,7 +590,9 @@ class Game:
 
     def do_pick_command(self, second_word):
         """
-            Performs the PICK command.
+            Allows players to pick an item and add it to the backpack, 
+            when the player adds the item to the backpack, it disappears 
+            from the room and is now available just in the backpack.
         :param second_word: the item the player wants to add to backpack
         :return: None
         """
@@ -606,7 +616,8 @@ class Game:
 
     def do_go_command(self, second_word):
         """
-            Performs the GO command.
+            Allows the player to move through the rooms, nonetheless, 
+            some rooms are locked by password, cards, or key. 
         :param second_word: the direction the player wishes to travel in
         :return: None
         """

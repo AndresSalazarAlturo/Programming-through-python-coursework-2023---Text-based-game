@@ -5,7 +5,7 @@ from src.my_exceptions import NotInBackpackError, FullBackpackError
 
 class Backpack:
     """
-    A class to allow us to pickup and put down items...
+    A class to allow us to picku, use and put down items.
     Backpack is limited to number of items set by capacity.
     This example incorporates a user defined exception.
     """
@@ -63,7 +63,7 @@ class Backpack:
         
     def process_operation_game(self, dining_room_item):
         """
-            generates two random numbers, and set a timer, give the player 20 seconds to answer all the operations. 
+            Generates two random numbers, and set a timer, give the player 20 seconds to answer all the operations. 
             The numbers are between -20 and 20. When complete the game, the dining room door unlocks. 
             :param dining_room_item: Get the dining_room object to access the 'locked' parameter and change it
             when win the game
@@ -72,10 +72,10 @@ class Backpack:
         cnt = 0 
         timeout = 20                    ## Time to answer the questions
         start_time = time.time()        ## Set the start time to compare it with the current time
-        number_of_operations = 2
+        number_of_operations = 5
 
         quit_operation_game = True
-        print("Solve 2 questions to get the object")
+        print("Solve 5 questions to get the object")
         print("Type 'back' to quit the game")
 
         dining_room_lock = dining_room_item["dining_room"]
@@ -121,7 +121,7 @@ class Backpack:
 
     def process_hangman_game(self, hidden_items):
         """
-            access the data.txt file where the words are used in the game and pick one randomly. 
+            Access the data.txt file where the words are used in the game and pick one randomly. 
             The player can access one letter or type the word. After completing the game, a new 
             item is given to the player, in this case the “key”.
             :param hidden_items: Dictionary with the current room hidden objects
@@ -154,7 +154,7 @@ class Backpack:
             print("¡Guess the word!")
 
             ##Print solution to test
-            print(my_word)
+            # print(my_word)
 
             for under_score in my_word_spaces_underscores:
                 print(under_score + " ", end = "")
@@ -201,7 +201,7 @@ class Backpack:
             :return: True when the user guess the number else False
         """
         random.seed(20)
-        num = random.randint(1, 10)
+        num = random.randint(1, 20)
 
         if guess == num:
             print("congratulations! you won!")
@@ -235,7 +235,7 @@ class Backpack:
         ##shuffle the list order randomly
         random.seed(10)
         random.shuffle(list_of_items)
-        print(list_of_items, "--> solution")
+        # print(list_of_items, "--> solution")
 
         user_input = []
         for i in range(1, len(list_of_items) + 1):
