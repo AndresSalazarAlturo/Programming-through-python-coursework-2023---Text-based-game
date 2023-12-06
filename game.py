@@ -21,8 +21,12 @@ As part of course work for Programming through python 2023 :D
 
 #Set the path to other directories
 import sys
-sys.path.append('./')
+import os
 
+## Get the current working directory
+current_dir = os.getcwd()
+## Append the cwd
+sys.path.append(current_dir)
 from src.room import Room
 from src.text_ui import TextUI
 from src.items import Item
@@ -40,15 +44,19 @@ class Game:
         ##Create the player object
         self.my_player = Player()
         ##Set up all rooms and objects
-        self.create_rooms()
-        ##Initial position
-        self.my_player.current_room = self.storage
+        self.game_set_up()
+        ##Initial position - Can be change to test features in other rooms
+        self.my_player.current_room = self.first_room
         ##Text to UI object
         self.textUI = TextUI()
 
-    def create_rooms(self):
+    def game_set_up(self):
         """
-            Sets up all room assets.
+            Sets up all game. Create:
+            Player
+            Rooms
+            Items
+            Backpack
         :return: None
         """
         #########################################
@@ -329,6 +337,8 @@ class Game:
     def play(self):
         """
             The main play loop.
+            asks for the players name and add the attribute to the players object, then the game's main loop 
+            keep asking for command until the player use the command 'quit' or finish the game.
         :return: None
         """
         ##Print the welcome message
@@ -358,6 +368,8 @@ class Game:
     def process_command(self, command):
         """
             Process a command from the TextUI.
+            Gets the user input and depending on the first word selects the command and does what user 
+            specifies with the second word.
         :param command: a 2-tuple of the form (command_word, second_word)
         :return: True if the game has been quit, False otherwise
         """
@@ -417,8 +429,9 @@ class Game:
     
     def do_use_command(self, second_word):
         """
-            Performs the USE command. Now performs the teleport with the 'stone' object
-            :param second_word: the item the player wants to remove from backpack
+            Performs the USE command.
+            :param second_word: Players second word, must be a item that can be use. If can't be use
+            or not in the bag pack ask for a command again.
             :return: None
         """
 
@@ -500,10 +513,13 @@ class Game:
                 self.textUI.operation_game_info()
                 start_game, word2 = self.textUI.get_command()
                 if start_game == 'start':
-                    self.my_player.backpack.process_operation_game(self.game_rooms)
-                    self.textUI.print_lines()
-                    ##Remove the operation_game from the backpack
-                    self.my_player.backpack.remove_item(second_word)
+                    if self.my_player.backpack.process_operation_game(self.game_rooms):
+                        self.textUI.print_lines()
+                        ##Remove the operation_game from the backpack
+                        self.my_player.backpack.remove_item(second_word)
+                    else:
+                        ##When the player lose by time
+                        print("Try to the game again!")
                 else:
                     self.textUI.print_to_textUI("Remember to solve the operation_game to open the dining_room door")
                     self.textUI.print_lines()

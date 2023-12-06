@@ -49,7 +49,7 @@ class Backpack:
 
     def increase_backpack_capacity(self, item):
         """
-            Increase the backpack capacity
+            Increase the backpack capacity when user use the item “pocket”.
             :param item: Pocket item that increase the backpack capacity when used
             :return: True if item use properly else False
         """
@@ -63,13 +63,14 @@ class Backpack:
         
     def process_operation_game(self, dining_room_item):
         """
-            Process the operation game, create the random numbers and the timer
+            generates two random numbers, and set a timer, give the player 20 seconds to answer all the operations. 
+            The numbers are between -20 and 20. When complete the game, the dining room door unlocks. 
             :param dining_room_item: Get the dining_room object to access the 'locked' parameter and change it
             when win the game
             :return: True if solve the questions in time else False
         """
         cnt = 0 
-        timeout = 60                    ## Time to answer the questions
+        timeout = 20                    ## Time to answer the questions
         start_time = time.time()        ## Set the start time to compare it with the current time
         number_of_operations = 2
 
@@ -120,7 +121,9 @@ class Backpack:
 
     def process_hangman_game(self, hidden_items):
         """
-            Process the hangman game.
+            access the data.txt file where the words are used in the game and pick one randomly. 
+            The player can access one letter or type the word. After completing the game, a new 
+            item is given to the player, in this case the “key”.
             :param hidden_items: Dictionary with the current room hidden objects
             :return: True if guess the word else False
         """
@@ -190,8 +193,9 @@ class Backpack:
 
     def solve_puzzle(self, guess, hidden_items):
         """
-            Create a basic guess the number puzzle, the user knows if the guess
-            is too high or too low
+            Process guess the number game; it generates a random number; it tells the player if 
+            the number is too high or too low. When guess the number, a new item is given to the 
+            player, in this case a document.
             :param guess: user guess
             :param hidden_items: Dictionary with the current room hidden objects
             :return: True when the user guess the number else False
@@ -221,8 +225,8 @@ class Backpack:
 
     def process_mini_game(self, hidden_items):
         """
-            Process the mini_game - The game consist in introduce in correct order the figures to
-            unlock the dining room
+            It takes a three items list and shuffle the list randomly, now the user must enter the 
+            correct order of the items to get the storage room password.
             :param hidden_items: Dictionary with the current room hidden objects
             :return: if solve the mini_game True else False
         """

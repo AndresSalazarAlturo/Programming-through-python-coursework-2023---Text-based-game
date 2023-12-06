@@ -67,4 +67,4 @@ class TestBackpack(unittest.TestCase):
         self.assertEqual(self.backpack.get_number_of_items(),1)
 
         ##Test remove item not in backpack
-        # self.assertFalse(self.backpack.remove_item(self.item1))
+        self.assertFalse(self.backpack.remove_item(self.item1))

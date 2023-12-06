@@ -2,9 +2,6 @@
 A simple text based User Interface (UI) for the Adventure World game.
 """
 
-
-import textwrap
-
 class TextUI:
 
     def __init__(self):
@@ -35,9 +32,6 @@ class TextUI:
             Displays a welcome message.
         :return: None
         """
-        # self.print_to_textUI("You are lost. You are alone. You wander")
-        # self.print_to_textUI("around the deserted complex.")
-        # self.print_to_textUI("")
         self.print_to_textUI("""
         
         In the eerie silence of a long-forgotten research complex, shadows danced menacingly 

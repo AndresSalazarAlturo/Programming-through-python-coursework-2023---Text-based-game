@@ -56,8 +56,8 @@ class Room:
 
     def add_hidden_item_to_room(self, item):
         """
-            Add the hidden item to room_items that are stored in a dictionary.
-            All item are objects from item class.
+            Add an item to the room hidden items dictionary. Items that the player cannot 
+            see, but where are the items if player wins after completing some mini games.
         :param item: The item in the room
         :return: True
         """
@@ -67,7 +67,9 @@ class Room:
 
     def can_enter(self, backpack, password = "", game_rooms = None, next_room = None, dining_room_lock = None):
         """
-            Allow access to a room locked by object or password
+            Allow access to the room if the room does not require an item in the backpack to go in or a password. 
+            If requires an item or password, check the backpack for the item or ask the player for the password. 
+            If the item not in backpack or player typed the wrong password, can not go into the room.
         :param backpack: Backpack object
         :param next_room: Next room object
         :return: True to allow access or False when wrong password or object not in backpack
@@ -87,11 +89,11 @@ class Room:
                     raise NotInBackpackError("card2", "Not in backpack")
                 
                 elif self.locked == "statue" and "statue" not in office_items.room_items:
-                    print("The statue is not pressing the button")
+                    print("Can't access the kitchen. The statue is not pressing the button")
                     return False
 
                 elif dining_room_lock.locked == True and next_room == dining_room_lock:
-                    print("The room is locked, solve the figures mini_game to access")
+                    print("The dining_room is locked, solve the figures mini_game to access")
                     return False
 
                 elif self.locked == "key" and "key" not in backpack.contents:
@@ -115,7 +117,8 @@ class Room:
             
     def allow_teleport(self, backpack, game_rooms):
         """
-            Allow teleportation with an specific object
+            Allow teleport when the user has the stone in the backpack. Access the room games 
+            dictionary to print all available rooms to teleport and access the room by writing the room name.
             :param backpack: Player backpack
             :param game_rooms: Dictionary with all rooms, key: string name; value: room object
             :return: True or False depending if the object is in the backpack
@@ -151,7 +154,7 @@ class Room:
 
     def get_short_description(self):
         """
-            Fetch a short text description.
+            Fetch a short room description.
         :return: text description
         """
         return f'You are in {self.description}'
